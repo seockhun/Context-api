@@ -15,3 +15,7 @@ export const CellInput = styled.input`
 export const MineInput = styled.input`
     
 `
+
+export const StartBtn = styled.button`
+
+`
