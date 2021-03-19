@@ -46,15 +46,21 @@ const getTdText = (code) => {
         case CODE.QUESTION:
             return '?';
         default:
-            return '';
+            return code || '';
     }
 }
 
 const Td = ({ rowIndex, cellIndex }) => {
 
-    const { tableData, dispatch } = useContext(TableContext);
+    const { tableData, dispatch, halted } = useContext(TableContext);
+
+
 
     const onClickTd = useCallback(() => {
+        if (halted) {
+            return;
+        }
+
         switch (tableData[rowIndex][cellIndex]) {
             case CODE.OPEND:
             case CODE.FLAG:
@@ -69,12 +75,15 @@ const Td = ({ rowIndex, cellIndex }) => {
                 dispatch({ type: CLICK_MINE, row: rowIndex, cell: cellIndex });
                 return;
         }
-    }, []);
+    }, [tableData[rowIndex][cellIndex], halted]);
 
 
 
     const onRightClickTd = useCallback((e) => {
         e.preventDefault();
+        if (halted) {
+            return;
+        }
         switch (tableData[rowIndex][cellIndex]) {
 
             case CODE.NORMAL:
@@ -92,7 +101,7 @@ const Td = ({ rowIndex, cellIndex }) => {
             default:
                 return;
         }
-    }, [tableData[rowIndex][cellIndex]]);
+    }, [tableData[rowIndex][cellIndex], halted]);
 
     return (
         <td

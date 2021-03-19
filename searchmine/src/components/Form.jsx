@@ -31,7 +31,7 @@ const Form = () => {
             <S.RowInput type="number" placeholder="row count" onChange={onChangeRow} />
             <S.CellInput type="number" placeholder="cell count" onChange={onChangeCell} />
             <S.MineInput type="number" placeholder="mine count" onChange={onChangeMine} />
-            <S.StartBtn onClick={start}>시작</S.StartBtn>
+            <S.StartBtn onClick={start}>start</S.StartBtn>
         </S.InputBox >
     );
 }
